@@ -20,11 +20,11 @@ def handle_children(component: dict, multiplier: int):
 listing = {}
 contents = []
 
-for listing_line in open('listing.txt').read().split('\n'):
+for listing_line in open('src/listing.txt').read().split('\n'):
     p = listing_line.split('\t')
     listing[int(p[0])] = p[1]
 
-for contents_line in open('contents.txt').read().split('\n'):
+for contents_line in open('src/contents.txt').read().split('\n'):
     p = list(map(int, contents_line.split(' ')))
     contents.append(dict(zip(['parent', 'child', 'amount'], p)))
 
@@ -32,7 +32,7 @@ for contents_line in open('contents.txt').read().split('\n'):
 result = {}
 
 # начинаем читать заказ
-for order_line in open('order.txt').readlines():
+for order_line in open('src/order.txt').readlines():
     p = dict(zip(
         ['parent', 'amount'],
         map(int, order_line.replace('\n', '').split(' '))
@@ -47,10 +47,7 @@ for order_line in open('order.txt').readlines():
             handle_children(child, p['amount'])
 
 # вывести результаты в файлик
-results_file = open('result.txt', encoding='utf-8', mode='w+')
+results_file = open('src/result.txt', encoding='utf-8', mode='w+')
 for key in result:
-    #results_file.write(f'{key}\t{listing[key]}\t{result[key]}\n')
     results_file.write(f'{listing[key]} - {result[key]} шт.\n')
 results_file.close()
-
-# номер \t название \t общее количество

@@ -1,5 +1,5 @@
 # project02122021
-![scheme](https://raw.githubusercontent.com/Kofirs2634/project02122021/main/scheme.svg?token=APOZXU2GE6MZND2OOQOR7PDBVDVVQ)
+![scheme](scheme.svg?token=APOZXU2GE6MZND2OOQOR7PDBVDVVQ)
 Блок-схема: [lucidchart.app](https://lucid.app/lucidchart/765330b2-4530-4c24-a224-e5acc551ebf2/edit?invitationId=inv_1986b984-8ea0-4237-905c-a857111a3f40) (без регистрации недоступна, _к сожалению_)
 
 ## FAQ
