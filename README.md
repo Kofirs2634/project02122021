@@ -1,2 +1,16 @@
 # project02122021
-Блок-схема: [lucidchart.app](https://lucid.app/lucidchart/765330b2-4530-4c24-a224-e5acc551ebf2/edit?invitationId=inv_1986b984-8ea0-4237-905c-a857111a3f40)
+<!--![scheme](https://raw.githubusercontent.com/Kofirs2634/project02122021/main/scheme.svg?token=APOZXU2GE6MZND2OOQOR7PDBVDVVQ)-->
+Блок-схема: [lucidchart.app](https://lucid.app/lucidchart/765330b2-4530-4c24-a224-e5acc551ebf2/edit?invitationId=inv_1986b984-8ea0-4237-905c-a857111a3f40) (без регистрации недоступна, _к сожалению_)
+
+## FAQ
+### Что это?
+Это программа для подсчета полного количества элементарных компонентов, нужных для сбора данной системы.
+
+### Зачем это?
+Это для нашего любимого преподавателя Л. Б. Гусятинера, который преподает основы программирования для нашей группы П1-20.
+
+### Кто это сделал?
+* [А. А. Поздняков](https://ies.unitech-mo.ru/user?userid=30651) — тимлид, большая часть кода. Должен был тянуть время, но сделал все за один вечер.
+* [Д. А. Булючев aka Димка](https://ies.unitech-mo.ru/user?userid=30567) — правая рука типлида, главный баламут.
+* [Д. Е. Владыкина](https://ies.unitech-mo.ru/user?userid=30574) — левая рука тимлида, помощь с блок-схемой и ее толкование.
+* [И. В. Иванов](https://ies.unitech-mo.ru/user?userid=30606) — редактор блок-схемы, ценитель красивого кода.

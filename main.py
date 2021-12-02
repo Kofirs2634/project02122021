@@ -1,12 +1,20 @@
 # блок функций-утилит
 def write_component(item: int, amount: int) -> None:
-    if item in components:
-        components[item] += amount
+    if item in result:
+        result[item] += amount
     else:
-        components[item] = amount
+        result[item] = amount
 
 def find_children(parent: int) -> list:
     return list(filter(lambda e: e['parent'] == parent, contents))
+
+def handle_children(component: dict, multiplier: int):
+    children = find_children(component['child'])
+    if not len(children):
+        write_component(component['child'], component['amount'] * multiplier)
+    else:
+        for child in children:
+            handle_children(child, component['amount'] * multiplier)
 
 # читаем нужные файлы и собираем данные
 listing = {}
@@ -21,7 +29,7 @@ for contents_line in open('contents.txt').read().split('\n'):
     contents.append(dict(zip(['parent', 'child', 'amount'], p)))
 
 # сюда будем собирать данные
-components = {}
+result = {}
 
 # начинаем читать заказ
 for order_line in open('order.txt').readlines():
@@ -36,17 +44,13 @@ for order_line in open('order.txt').readlines():
         write_component(p['parent'], p['amount'])
     else:
         for child in children:
-            subchildren = find_children(child['child'])
-            if not len(list(subchildren)):
-                write_component(child['child'], child['amount'])
+            handle_children(child, p['amount'])
 
-for key in components:
-    print(f'{key}\t{listing[key]}')
+# вывести результаты в файлик
+results_file = open('result.txt', encoding='utf-8', mode='w+')
+for key in result:
+    #results_file.write(f'{key}\t{listing[key]}\t{result[key]}\n')
+    results_file.write(f'{listing[key]} - {result[key]} шт.\n')
+results_file.close()
 
-def handle_children(component: dict):
-    children = find_children(component['child'])
-    if not len(children):
-        write_component(component['child'], component['amount'])
-    else:
-        for child in children:
-            handle_children(child)
+# номер \t название \t общее количество
