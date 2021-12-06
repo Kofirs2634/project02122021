@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project02122021</title>
+
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="shadow"></div>
+    <div class="modal" id="listing-modal">
+        <h3>Управление компонентом</h3>
+        <form action="#">
+            <label>Идентификатор: <input type="text" id="listing-modal-id" placeholder="опционально"></label>
+            <label>Название: <input type="text" id="listing-modal-name" required></label>
+            <div class="modal-controls">
+                <button id="listing-modal-cancel" class="button destr">Отмена</button>
+                <button id="listing-modal-confirm" class="button progr">Сохранить</button>
+            </div>
+        </form>
+    </div>
+    <div class="listing">
+        <h2>Компоненты</h2>
+        <button class="button center progr" id="add-listing">Добавить</button>
+    </div>
+    <div class="contents">
+        <h2>Состав компонентов</h2>
+        <!-- <div class="item">
+            <span class="contents-parent">компьютер</span>
+            <div class="subitem">
+                <span class="contents-child">системный блок</span>
+                <span class="contents-amount">(1 шт.)</span>
+            </div>
+        </div> -->
+    </div>
+    <div class="order">
+        <h2>Заказ</h2>
+    </div>
+    <div class="result">
+        <h2>Результаты</h2>
+    </div>
+
+    <template id="listing-item">
+        <div class="item">
+            <span class="listing-id"></span>
+            <span class="listing-name"></span>
+        </div>
+    </template>
+</body>
+</html>
