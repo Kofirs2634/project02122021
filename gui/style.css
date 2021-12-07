@@ -64,6 +64,11 @@ body.shadowed > .shadow {
 .button.progr { background: hsl(120, 100%, 60%) }
 .button.destr { background: hsl(0, 100%, 60%); color: hsl(0, 0%, 97%) }
 
+.button:disabled {
+    background: hsl(0, 0%, 75%);
+    cursor: not-allowed;
+}
+
 /* Прочая */
 h2, h3 {
     text-align: center;
@@ -79,4 +84,5 @@ h2, h3 {
     padding: .25em;
     cursor: pointer;
     transition: background 300ms 50ms;
+    user-select: none;
 }
