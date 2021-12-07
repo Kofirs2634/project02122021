@@ -17,17 +17,31 @@
             <label>Идентификатор: <input type="text" id="listing-modal-id" placeholder="опционально"></label>
             <label>Название: <input type="text" id="listing-modal-name" required></label>
             <div class="modal-controls">
-                <button id="listing-modal-cancel" class="button destr">Отмена</button>
-                <button id="listing-modal-confirm" class="button progr">Сохранить</button>
+                <button id="modal-cancel" class="button destr">Отмена</button>
+                <button id="modal-confirm" class="button progr">Сохранить</button>
             </div>
         </form>
     </div>
+    <div class="modal" id="order-modal">
+        <h3>Управление элементом заказа</h3>
+        <form action="#">
+            <label>Компонент: <select id="order-item-name"></select></label>
+            <label>Количество: <input type="number" min="1" max="1000" id="order-item-amount" value="1"></label>
+            <div class="modal-controls">
+                <button id="modal-cancel" class="button destr">Отмена</button>
+                <button id="modal-confirm" class="button progr">Сохранить</button>
+            </div>
+        </form>
+    </div>
+
+
     <div class="listing">
         <h2>Компоненты</h2>
         <button class="button center progr" id="add-listing">Добавить</button>
     </div>
-    <div class="contents">
+    <div class="realtions">
         <h2>Состав компонентов</h2>
+        <button class="button center progr" id="add-relation">Добавить</button>
         <!-- <div class="item">
             <span class="contents-parent">компьютер</span>
             <div class="subitem">
@@ -38,6 +52,7 @@
     </div>
     <div class="order">
         <h2>Заказ</h2>
+        <button class="button center progr" id="add-order">Добавить</button>
     </div>
     <div class="result">
         <h2>Результаты</h2>
@@ -47,6 +62,17 @@
         <div class="item">
             <span class="listing-id"></span>
             <span class="listing-name"></span>
+        </div>
+    </template>
+    <template id="relation-item">
+        <div class="item">
+            <span class="relation-parent"></span>
+        </div>
+    </template>
+    <template id="order-item">
+        <div class="item">
+            <span class="order-name"></span>
+            <span class="order-amount"></span>
         </div>
     </template>
 </body>
