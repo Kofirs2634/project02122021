@@ -10,22 +10,31 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- ВСПЛЫВАЮЩИЕ ОКНА -->
     <div class="shadow"></div>
     <div class="modal" id="listing-modal">
         <h3>Управление компонентом</h3>
         <form action="#">
             <label>Идентификатор: <input type="text" id="listing-modal-id" placeholder="опционально"></label>
             <label>Название: <input type="text" id="listing-modal-name" required></label>
+            <span class="modal-error" id="listing-modal-error"></span>
             <div class="modal-controls">
                 <button id="modal-cancel" class="button destr">Отмена</button>
                 <button id="modal-confirm" class="button progr">Сохранить</button>
             </div>
         </form>
     </div>
+    <div class="modal" id="relations-modal">
+        <h3>Управление отношениями</h3>
+        <form action="#">
+            <label>Родитель: <select class="component-selector" id="relation-parent-name"></select></label>
+        </form>
+    </div>
     <div class="modal" id="order-modal">
         <h3>Управление элементом заказа</h3>
         <form action="#">
-            <label>Компонент: <select id="order-item-name"></select></label>
+            <label><abbr title="По названию или идентификатору">Фильтр</abbr>: <input type="text" id="order-item-filter"></label>
+            <label>Компонент: <select class="component-selector" id="order-item-name"></select></label>
             <label>Количество: <input type="number" min="1" max="1000" id="order-item-amount" value="1"></label>
             <div class="modal-controls">
                 <button id="modal-cancel" class="button destr">Отмена</button>
@@ -34,6 +43,7 @@
         </form>
     </div>
 
+    <!-- ВИДИМЫЙ КОНТЕНТ -->
 
     <div class="listing">
         <h2>Компоненты</h2>
@@ -54,9 +64,12 @@
         <h2>Заказ</h2>
         <button class="button center progr" id="add-order" disabled>Добавить</button>
     </div>
-    <div class="result">
+    <button class="button center progr" id="calculate" disabled>Рассчитать</button>
+    <!-- <div class="result">
         <h2>Результаты</h2>
-    </div>
+    </div> -->
+
+    <!-- ШАБЛОНЫ ЗАПИСЕЙ -->
 
     <template id="listing-item">
         <div class="item">
@@ -67,6 +80,7 @@
     <template id="relation-item">
         <div class="item">
             <span class="relation-parent"></span>
+            <div class="subitems"></div>
         </div>
     </template>
     <template id="order-item">

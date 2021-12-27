@@ -36,11 +36,20 @@ body.shadowed > .shadow {
     display: none
 }
 .modal.active { display: block }
-
+.modal h3 {
+    margin: 0 0 .75em 0
+}
 .modal form {
     display: flex;
     flex-direction: column;
     gap: .5em
+}
+.modal-error {
+    color: hsl(0, 100%, 60%);
+    font-style: italic;
+    font-size: .7em;
+    text-align: center;
+    display: none;
 }
 .modal-controls {
     display: flex;
@@ -79,6 +88,10 @@ h2, h3 {
 .subitem {
     margin-left: 2em;
 }
+#calculate {
+    grid-column: 1 / 4;
+    font-size: 1.3em;
+}
 
 .item {
     padding: .25em;
@@ -86,3 +99,5 @@ h2, h3 {
     transition: background 300ms 50ms;
     user-select: none;
 }
+
+[title] { cursor: help }
