@@ -7,7 +7,8 @@ body {
     row-gap: 45px;
     background: hsl(0, 0%, 97%);
     position: relative;
-    margin: 0
+    margin: 0;
+    padding: .5em 1em;
 }
 body.shadowed {
     overflow: hidden;
@@ -75,7 +76,6 @@ body.shadowed > .shadow {
 
 .button:disabled {
     background: hsl(0, 0%, 75%);
-    cursor: not-allowed;
 }
 
 /* Прочая */
@@ -93,6 +93,10 @@ h2, h3 {
     font-size: 1.3em;
 }
 
+.item-list {
+    max-height: 300px;
+    overflow: auto;
+}
 .item {
     padding: .25em;
     cursor: pointer;
@@ -100,4 +104,17 @@ h2, h3 {
     user-select: none;
 }
 
+.manage-list {
+    display: flex;
+    flex-direction: column;
+    gap: .25em
+}
+
+#rel-elements {
+    display: grid;
+    gap: .25em .75em;
+    grid-template-columns: 1fr 1fr
+}
+
 [title] { cursor: help }
+:disabled { cursor: not-allowed }

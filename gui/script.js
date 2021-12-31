@@ -46,7 +46,7 @@ function escapeRegexp(string) {
      * Обновляет список компонентов
      */
     function updateListing() {
-        const listingEl = document.querySelector('.listing')
+        const listingEl = document.querySelector('#listing-list')
         listingEl.querySelectorAll('.item').forEach(e => e.remove())
 
         listing.forEach(e => {
@@ -69,7 +69,7 @@ function escapeRegexp(string) {
                     updateOrder()
                 }
             })
-            listingEl.querySelector('.button').before(_t)
+            listingEl.append(_t)
         })
     }
 
@@ -77,7 +77,7 @@ function escapeRegexp(string) {
      * Обновляет список заказа
      */
     function updateOrder() {
-        const orderEl = document.querySelector('.order')
+        const orderEl = document.querySelector('#order-list')
         orderEl.querySelectorAll('.item').forEach(e => e.remove())
 
         order.forEach(e => {
@@ -87,7 +87,7 @@ function escapeRegexp(string) {
             _t.querySelector('.item').addEventListener('click', event => {
                 if (!event.shiftKey) {
                     const modal = openModal('#order-modal')
-                    fillComponentSelection(listing, '#order-item-name')
+                    updateComponentSelector(listing, '#order-item-name')
                     modal.querySelector('#order-item-name').value = e.id
                     modal.querySelector('#order-item-amount').value = e.amount
                     modal.setAttribute('action', 'edit')
@@ -97,7 +97,7 @@ function escapeRegexp(string) {
                     updateOrder()
                 }
             })
-            orderEl.querySelector('.button').before(_t)
+            orderEl.append(_t)
         })
     }
 
@@ -122,16 +122,22 @@ function escapeRegexp(string) {
     }
 
     /**
-     * Заполняет выпадающее меню компонентами
+     * Заполняет одно или несколько выпадающих меню компонентами
      * @param {Component[]} list Список компонентов
-     * @param {string} selector Селектор выпадающего меню
+     * @param {string} selector Селектор одного или нескольких меню
      */
-    function fillComponentSelection(list, selector) {
+    function updateComponentSelector(list, selector) {
+        const isEverything = selector.match(/^\./)
+        const dropdown = isEverything ? document.querySelectorAll(selector) : document.querySelector(selector)
+        
+        if (isEverything) dropdown.forEach(e => e.querySelectorAll('option:not(.immune)').forEach(el => el.remove()))
+        else dropdown.querySelectorAll('option:not(.immune)').forEach(el => el.remove())
         list.forEach(e => {
             const _t = document.createElement('option')
             _t.setAttribute('value', e.id)
             _t.innerText = e.name
-            document.querySelector(selector).append(_t)
+            if (isEverything) dropdown.forEach(e => e.append(_t.cloneNode(true)))
+            else dropdown.append(_t)
         })
     }
 
@@ -189,13 +195,8 @@ function escapeRegexp(string) {
     function toggleButtons() {
         const addRelationBtn = document.querySelector('#add-relation')
         const addOrderBtn = document.querySelector('#add-order')
-        if (!listing.length) {
-            addRelationBtn.setAttribute('disabled', '')
-            addOrderBtn.setAttribute('disabled', '')
-        } else {
-            addRelationBtn.removeAttribute('disabled')
-            addOrderBtn.removeAttribute('disabled')
-        }
+        if (!listing.length) addOrderBtn.setAttribute('disabled', '')
+        else addOrderBtn.removeAttribute('disabled')
     }
 
     /**
@@ -232,7 +233,7 @@ function escapeRegexp(string) {
                     case 'order': {  // запись в заказ
                         const obj = {
                             id: modal.querySelector('[id*="name"]').value,
-                            amount: parseInt(modal.querySelector('[id*="amount"]').value)
+                            amount: parseInt(modal.querySelector('[id*="amount"]').value) || 1
                         }
                         if (action == 'new') {
                             const exist = order.find(e => e.id == obj.id)
@@ -254,6 +255,7 @@ function escapeRegexp(string) {
                 updateListing()
                 updateOrder()
                 toggleButtons()
+                updateComponentSelector(listing, '.component-selector')
                 break
         }
     }
@@ -270,7 +272,7 @@ function escapeRegexp(string) {
             document.querySelector('#order-modal #modal-confirm').setAttribute('disabled', '')
             return
         } else {
-            fillComponentSelection(filtrate, '#order-item-name')
+            updateComponentSelector(filtrate, '#order-item-name')
             document.querySelector('#order-modal #modal-confirm').removeAttribute('disabled')
         }
     }
@@ -292,6 +294,7 @@ function escapeRegexp(string) {
     // отрисовываем данные из локалсторейджа, если они есть
     updateListing()
     updateOrder()
+    updateComponentSelector(listing, '.component-selector')
     toggleButtons()
 
     // открываем всплывающее окно (далее - модаль) по клику на кнопке
@@ -302,11 +305,11 @@ function escapeRegexp(string) {
 
     // открываем модаль добавления в заказ
     document.querySelector('#add-order').addEventListener('click', () => {
-        const modal = openModal('#order-modal')
+        openModal('#order-modal')
 
         // вот это вот у нас заполнение дропдауна во избежание
         // цирка с конями со стороны юзера
-        fillComponentSelection(listing, '#order-item-name')
+        updateComponentSelector(listing, '#order-item-name')
     })
 
     // навешиваем обработку кликов на некоторые элементы модалей

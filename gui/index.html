@@ -33,7 +33,7 @@
     <div class="modal" id="order-modal">
         <h3>Управление элементом заказа</h3>
         <form action="#">
-            <label><abbr title="По названию или идентификатору">Фильтр</abbr>: <input type="text" id="order-item-filter"></label>
+            <label>Фильтр: <input type="text" id="order-item-filter" placeholder="название или ID"></label>
             <label>Компонент: <select class="component-selector" id="order-item-name"></select></label>
             <label>Количество: <input type="number" min="1" max="1000" id="order-item-amount" value="1"></label>
             <div class="modal-controls">
@@ -47,11 +47,32 @@
 
     <div class="listing">
         <h2>Компоненты</h2>
-        <button class="button center progr" id="add-listing">Добавить</button>
+        <fieldset class="manage-list">
+            <legend>Управление</legend>
+            <button class="button center progr" id="add-listing">Добавить</button>
+        </fieldset>
+        <fieldset class="item-list" id="listing-list">
+            <legend>Список</legend>
+        </fieldset>
     </div>
     <div class="realtions">
         <h2>Состав компонентов</h2>
-        <button class="button center progr" id="add-relation" disabled>Добавить</button>
+        <fieldset class="manage-list">
+            <legend>Управление</legend>
+            <div id="rel-elements">
+                <label for="rel-parent">Родитель</label>
+                <label for="rel-child">Потомок</label>
+                <select class="component-selector" id="rel-parent"></select>
+                <select class="component-selector" id="rel-child"><option value="$null" class="immune">(отсутствует)</option></select>
+                <input type="text" id="rel-parent-filter" placeholder="Фильтр по названию или ID">
+                <input type="text" id="rel-child-filter" placeholder="Фильтр по названию или ID">
+            </div>
+            <label>Количество: <input type="number" id="rel-amount" min="1" max="1000" value="1"></label>
+            <button class="button center progr" id="add-relation" disabled>Добавить</button>
+        </fieldset>
+        <fieldset class="item-list" id="relations-list">
+            <legend>Дерево</legend>
+        </fieldset>
         <!-- <div class="item">
             <span class="contents-parent">компьютер</span>
             <div class="subitem">
@@ -62,7 +83,13 @@
     </div>
     <div class="order">
         <h2>Заказ</h2>
-        <button class="button center progr" id="add-order" disabled>Добавить</button>
+        <fieldset class="manage-list">
+            <legend>Управление</legend>
+            <button class="button center progr" id="add-order" disabled>Добавить</button>
+        </fieldset>
+        <fieldset class="item-list" id="order-list">
+            <legend>Список</legend>
+        </fieldset>
     </div>
     <button class="button center progr" id="calculate" disabled>Рассчитать</button>
     <!-- <div class="result">
